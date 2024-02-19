@@ -1,0 +1,80 @@
+            - Mini-platformă de Socializare -
+                   - RADU ANCA 325CB-
+
+    Pentru implemenatrea acestei teme am folosit clasa App, si am
+creat inca trei clase (User, Post si Comm). In metoda statica main programul
+verifica argumentele primite in linia de comanda si apeleaza metodele potrivite
+fiecarui caz.
+    Am implementat de asemenea interfata Likeable ce contine metodele like si unlike.
+Clasele Post si Comm implementeaza aceasta interfata si definesc inauntrul lor cele
+doua metode.
+    Am folosit modificatori de acces potriviti pentru incapsularea corecta a datelor.
+De exemplu, campurile password sau following sunt private, intrucat doar user-ul ce le
+detine are acces la parola sau la lista de persoane pe care le urmareste. De asemenea,
+am facut private si metode din clasa User precum follow, unfollow, createPost, deletePost
+si asa mai departe.
+
+    ---In contructorul User sunt atribuite username-ul si password-ul cu cele primite de la
+tastatura.
+    ---In contructorul Post sunt atribuite username-ul, password-ul, text-ul cu cele primite
+de la tastatura, si se incrementeaza variabila statica idMakerPost care devine id-ul pos-
+tarii create.
+    ---In contructorul Comm sunt atribuite username-ul, password-ul, text-ul cu cele primite
+de la tastatura, si se incrementeaza variabila statica idMakerComm care devine id-ul
+comentariului creat.
+
+    *In cazul in care nu se primeste niciun argument in linia de comanda "se intra"
+pe cazul "Dummmy" si se afiseaza "Hello World!".
+
+    *In toate cazurile (in afara de "Dummy" si "Cleanup") verificam existenta celui
+de-al doilea argument (username-ul) si celui de-al treilea argument (password-ul) si
+in cazul in care acestea nu sunt furnizate se afiseaza un mesaj de eroare (nu s-a
+reusit autentificare).
+
+    *In cazurile de creare (user, postare sau comentariu), se instantiaza un nou obiect
+folosind variabilele necesare furnizate si acesta se adauga in vectorul de obiecte (users,
+posts, comments).
+    *In cazurile de stergere (user, postare sau comentariu), se gaseste obiectul ce trebuie
+sters (prin username sau id) si se elimina din vectorul de obiecte (users, posts, comments).
+
+    *In cazul "follow" se adauga user-ul ce da follow in vectorul de users care il urmaresc
+pe user-ul ce trebuie urmarit si se aduga user-ul ce trebuie urmarit in vectorul de users care
+il urmaresc pe user. In cazul unfollow acestia se elimina din vectori.
+
+    *In cazurile "like" se adauga user-ul ce da like in vectorul liked al postarii sau al comentariului
+caruia i se da like, iar in cazul unlike acesta se elimina din vector.
+
+    *In cazurile "get ..." se gaseste user-ul sau postarea ale caror detalii trebuie afisate
+folosind metode specifice, iar detaliile sunt afisate folosind un "sablon".
+
+    *In cazurile "get 5 most ..." se itereaza de cate 5 ori prin toate obiectele intre care
+trebuie sa se faca departajarea, iar de fiecare data se afiseaza cel cu cele mai multe like-uri\
+urmaritori\comentarii etc., acesta marcandu-se ca "folosit" pentru a se putea gasi urmatorul maxim.
+
+    *In cazul "Cleanup" se apeleaza metoda cleanup in care este sters fisierul ce contine datele fie-
+carui user si se reinitiaza vectorul de users si se sterge numarul de postari si de comentarii.
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+                        - Bonus -
+    Urmatoarele cazuri ar putea fi adaugate la implementare aplicatiei.
+    -> Modul "blocked" in care utilizatorul 1 il blocheaza pe utilizatorul 2. Astfel, utilizatorul 1
+nu v-a putea sa ii dea follow utilizatorului 2  si utilizatorul 2 nu v-a putea sa ii dea follow
+utilizatorului 1 pana cand utilizatorul 1 nu-i va da "unblock" celui de-al doilea.
+    -> Mesageria. Putem adauga o noua trasatura prin care utilizatorul 1 ii va putea lasa un mesaj
+utilizatorului 2 (pentru acest caz am implementa clasa Message ce va contine campurile sender (numele
+celui ce a trimis mesajul), text (continutul mesajului) si id. Am adauga in clasa User campurile
+receivedMessages si sentMessages care ar fi vectori de obiecte Message. Un mesaj poate fi "vazut" doar
+de cel ce l-a trimis si de cel ce l-a primit, si acesta poate fi trimis doar daca ambele persoane se ur-
+maresc reciproc.
+    -> Modul "archive" in care utilizatorul poate sa arhiveze una din postarile create de el. Astfel,
+nu ar sterge-o, insa postarea ar deveni vizibila doar pentru el.
+
+    Refactorizarea comenzilor și răspunsurilor.
+    -> Manager de comenzi: Implementarea unui manager de comenzi care să gestioneze și să dirijeze execuția
+comenzilor. Acest manager ar putea să folosească o mapare între numele comenzilor și obiectele care le
+implementează pentru a direcționa corect comenzile.
+    -> Utilizarea Chain of Responsibility prin tratarea modulară a comenzilor și răspunsurilor: Prin
+implementarea unui lanț de obiecte responsabile de procesarea comenzilor și generarea răspunsurilor, fiecare
+nod din lanț poate gestiona o anumită comandă sau acțiune, asigurând o separare clară a responsabilităților.
+    -> Utilizarea interfețelor și a abstractizării: Definirea interfețelor și a claselor abstracte pentru a
+ascunde detaliile de implementare și pentru a permite schimbarea ușoară a implementării.
